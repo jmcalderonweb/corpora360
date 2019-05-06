@@ -15,7 +15,9 @@ class ClientesController extends Controller
     public function index()
     {
         //
-        return "Listado Clientes";
+         $clientes=Cliente::orderBy('id','DESC')->paginate(3);
+
+        return view('clientes.index',compact('clientes'));
     }
 
     /**
@@ -29,7 +31,7 @@ class ClientesController extends Controller
         return view('clientes.create');
     }
 
-    /**
+      /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,6 +40,9 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[ 'nombre'=>'required']);
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -54,27 +59,31 @@ class ClientesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
         //
-        return "Editar Cliente";
+        $cliente=Cliente::find($id);
+        return view('clientes.edit',compact('cliente'));
     }
 
-    /**
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
-    {
+    public function update(Request $request, $id)    {
         //
+        $this->validate($request,[ 'nombre'=>'required']);
+ 
+        Cliente::find($id)->update($request->all());
+        return redirect()->route('clientes.index')->with('success','Registro actualizado satisfactoriamente');
+ 
     }
-
     /**
      * Remove the specified resource from storage.
      *

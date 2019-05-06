@@ -22,26 +22,29 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Nuevo Cliente</h3>
+					<h3 class="panel-title">Editar Cliente</h3>
 				</div>
 				<div class="panel-body">					
 					<div class="table-container">
-						<form method="POST" action="{{ route('clientes.store') }}"  role="form">
+						<form method="POST" action="{{ route('clientes.update',$cliente->id) }}"  role="form">
 							{{ csrf_field() }}
-							<div class="row">								
+							<input name="_method" type="hidden" value="PATCH">
+							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Nombre del Cliente">
+										<input type="text" name="nombre" id="nombre" class="form-control input-sm" value="{{$cliente->nombre}}">
 									</div>
 								</div>
+								
 							</div>
+
 							
-							
+						
 							
 							<div class="row">
 
 								<div class="col-xs-12 col-sm-12 col-md-12">
-									<input type="submit"  value="Guardar" class="btn btn-success btn-block">
+									<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
 									<a href="{{ route('clientes.index') }}" class="btn btn-info btn-block" >Atrás</a>
 								</div>	
 

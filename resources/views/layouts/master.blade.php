@@ -5,7 +5,7 @@
 	<meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=yes">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-	<linkk href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"></script>
+	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -21,7 +21,7 @@
 	</div>
 	<script>
 	$(document).ready(function() {
-    $('#my-table').DataTable();
+    $('#mytable').DataTable();
 	} );
 	</script>
 	
