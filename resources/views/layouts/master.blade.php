@@ -21,7 +21,7 @@
 	</div>
 	<script>
 	$(document).ready(function() {
-    $('#mytable').DataTable();
+    $('#my-table').DataTable();
 	} );
 	</script>
 	

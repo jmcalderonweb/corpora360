@@ -16,7 +16,7 @@ class ProductosController extends Controller
     {
         //
 
-        $productos=Producto::orderBy('id','DESC')->paginate(3);
+        $productos=Producto::all();
 
         return view('productos.index',compact('productos'));
     }

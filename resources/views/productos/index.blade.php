@@ -46,7 +46,7 @@
           </table>
         </div>
       </div>
-      {{ $productos->links() }}
+     
     </div>
   </div>
 </section>
