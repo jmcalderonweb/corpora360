@@ -15,10 +15,12 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        $productos=Producto::all();
-        dd($productos);exit();
-        return "Listado Productos";
+
+        $productos=Producto::orderBy('id','DESC')->paginate(3);
+
+        return view('productos.index',compact('productos'));
     }
+       
 
     /**
      * Show the form for creating a new resource.
@@ -40,6 +42,9 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
+        Producto::create($request->all());
+        return redirect()->route('productos.index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -53,27 +58,32 @@ class ProductosController extends Controller
         //
     }
 
-    /**
+   /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
         //
+        $producto=Producto::find($id);
+        return view('productos.edit',compact('producto'));
     }
-
-    /**
+ /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Producto  $producto
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
-    {
+    public function update(Request $request, $id)    {
         //
+        $this->validate($request,[ 'nombre'=>'required', 'precio'=>'required']);
+ 
+        Producto::find($id)->update($request->all());
+        return redirect()->route('productos.index')->with('success','Registro actualizado satisfactoriamente');
+ 
     }
 
     /**
@@ -82,8 +92,10 @@ class ProductosController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
+         Producto::find($id)->delete();
+        return redirect()->route('productos.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }
