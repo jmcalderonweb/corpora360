@@ -6,14 +6,14 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="pull-left"><h3>Lista Productos</h3></div>
+          <div class="pull-left" style="margin-right:50px;"><h3>Lista Productos</h3></div>
           <div class="pull-right">
             <div class="btn-group">
               <a href="{{ route('productos.create') }}" class="btn btn-info" >Añadir Producto</a>
             </div>
           </div>
           <div class="table-container">
-            <table id="mytable" class="table table-bordred table-striped">
+            <table id="my-table" class="table table-bordred table-striped" >
              <thead>
                <th>Nombre</th>
                <th>Precio</th>              
